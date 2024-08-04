@@ -58,7 +58,7 @@ footer {
     bottom: 0;
 }
 
-/* Form Container Styling */
+/* Form Container Styling for Add Prize, Add Student, and Add Class Pages */
 .form-container {
     background-color: white;
     padding: 20px;
@@ -112,6 +112,33 @@ footer {
     margin-top: 20px;
     display: block;
 }
+/* Table Styling */
+.message {
+    margin-top: 20px;
+    display: block;
+}
+
+/* Table Styling */
+.prize-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.prize-table th, .prize-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.prize-table th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.prize-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
     </style>
 </head>
 <body>
@@ -121,10 +148,9 @@ footer {
                 <h1>إدارة النقاط والجوائز</h1>
             </header>
             <nav>
-                
-                <a href="Add Students.aspx">إضافة طلاب</a>
-                <a href="Add Prizes.aspx">إضافة جوائز</a>
-                <a href="Add Classes.aspx">إضافة فصول</a>
+                <a href="Add Students.aspx">إدارى الطلاب</a>
+                <a href="Add Classes.aspx">إدارة الفصول</a>
+                <a href="Add Prizes.aspx">إدارة الجوائز</a>
             </nav>
             <main>
                 <asp:ContentPlaceHolder ID="MainContent" runat="server" />

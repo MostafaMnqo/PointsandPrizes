@@ -25,4 +25,15 @@
             </div>
             <asp:Label ID="lblMessage" runat="server" CssClass="message"></asp:Label>
     </div>
+    <div class="form-container">
+        <h2>قائمة الجوائز</h2>
+        <asp:GridView ID="GridViewPrizes" runat="server" AutoGenerateColumns="False">
+            <Columns>
+                <asp:BoundField DataField="Pname" HeaderText="اسم الجائزة" />
+                <asp:ImageField DataImageUrlField="Pimage" HeaderText="صورة الجائزة" ControlStyle-Width="100px" ControlStyle-Height="100px" />
+                <asp:BoundField DataField="Pquantity" HeaderText="الكمية" />
+                <asp:BoundField DataField="Pprice" HeaderText="السعر" />
+            </Columns>
+        </asp:GridView>
+    </div>
 </asp:Content>

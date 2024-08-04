@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
@@ -13,7 +14,10 @@ namespace Points_and_Prizes
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                LoadPrizes();
+            }
         }
         protected void btnAddPrize_Click(object sender, EventArgs e)
         {
@@ -63,6 +67,26 @@ namespace Points_and_Prizes
                 txtPrizeName.Text = "";
                 txtQuantity.Text = "";
                 txtPrice.Text = "";
+
+                // Reload prizes
+                LoadPrizes();
+            }
+        }
+        private void LoadPrizes()
+        {
+            // Database connection string
+            string connStr = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Asus\\Documents\\PointsandPrizes.mdf;Integrated Security=True;Connect Timeout=30";
+
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                string sql = "SELECT Pname, Pimage, Pquantity, Pprice FROM Prizes";
+                using (SqlDataAdapter da = new SqlDataAdapter(sql, conn))
+                {
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    GridViewPrizes.DataSource = dt;
+                    GridViewPrizes.DataBind();
+                }
             }
         }
     }
