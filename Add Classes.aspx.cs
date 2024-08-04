@@ -62,7 +62,7 @@ namespace Points_and_Prizes
                     {
                         conn.Open();
                         cmd.ExecuteNonQuery();
-                        lblMessage.Text = "Class added successfully!";
+                        lblMessage.Text = "تم إضافة الفصل بنجاح!";
                         lblMessage.ForeColor = System.Drawing.Color.Green;
                         txtClassName.Text = "";
                         BindClasses();

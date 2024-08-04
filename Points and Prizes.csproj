@@ -68,10 +68,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Add Classes.aspx" />
-    <Content Include="Add Prizes old.aspx" />
     <Content Include="Add Prizes.aspx" />
     <Content Include="Add Students.aspx" />
-    <Content Include="Adding student.aspx" />
     <Content Include="NewFolder1\تكافل.jpg" />
     <Content Include="Web.config" />
     <Content Include="Login.aspx" />
@@ -83,13 +81,6 @@
     </Compile>
     <Compile Include="Add Classes.aspx.designer.cs">
       <DependentUpon>Add Classes.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Add Prizes old.aspx.cs">
-      <DependentUpon>Add Prizes old.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Add Prizes old.aspx.designer.cs">
-      <DependentUpon>Add Prizes old.aspx</DependentUpon>
     </Compile>
     <Compile Include="Add Prizes.aspx.cs">
       <DependentUpon>Add Prizes.aspx</DependentUpon>
@@ -104,13 +95,6 @@
     </Compile>
     <Compile Include="Add Students.aspx.designer.cs">
       <DependentUpon>Add Students.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Adding student.aspx.cs">
-      <DependentUpon>Adding student.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Adding student.aspx.designer.cs">
-      <DependentUpon>Adding student.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TheSite.Master.cs">
