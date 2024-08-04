@@ -2,13 +2,29 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="form-container">
-            <h2>إضافة جوائز</h2>
-            <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
-            <asp:TextBox ID="txtPrizeName" runat="server" Placeholder="أسم الجائزة"></asp:TextBox>
-            <asp:FileUpload ID="fileUpload" runat="server" />
-            <asp:TextBox ID="txtQuantity" runat="server" Placeholder="الكمية"></asp:TextBox>
-            <asp:TextBox ID="txtPrice" runat="server" Placeholder="السعر بالنقاط"></asp:TextBox>
-            <asp:Button ID="btnSubmit" runat="server" Text="إضافة" OnClick="btnSubmit_Click" />
-        </div>
+     <div class="form-container">
+        <h2>إضافة جائزة</h2>
+        
+            <div class="form-group">
+                <label for="txtPrizeName">اسم الجائزة:</label>
+                <asp:TextBox ID="txtPrizeName" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+            <div class="form-group">
+                <label for="fileUpload">تحميل صورة (اختياري):</label>
+                <asp:FileUpload ID="fileUpload" runat="server" CssClass="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="txtQuantity">الكمية:</label>
+                <asp:TextBox ID="txtQuantity" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+            </div>
+            <div class="form-group">
+                <label for="txtPrice">السعر:</label>
+                <asp:TextBox ID="txtPrice" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+            </div>
+            <div class="form-group">
+                <asp:Button ID="btnAddPrize" runat="server" Text="إضافة جائزة" CssClass="btn" OnClick="btnAddPrize_Click" />
+            </div>
+            <asp:Label ID="lblMessage" runat="server" CssClass="message"></asp:Label>
+        
+    </div>
 </asp:Content>

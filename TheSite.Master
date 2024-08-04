@@ -4,7 +4,7 @@
 
 <html>
 <head runat="server">
-    <title>Points and Prizes</title>
+    <title>إدارة النقاط والجوائز</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     
@@ -86,8 +86,7 @@ footer {
 
 .form-group input[type="text"],
 .form-group input[type="number"],
-.form-group input[type="file"],
-.form-group select {
+.form-group input[type="file"] {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -107,6 +106,12 @@ footer {
 .form-group button:hover {
     background-color: #45a049;
 }
+
+/* Message Label Styling */
+.message {
+    margin-top: 20px;
+    display: block;
+}
     </style>
 </head>
 <body>
@@ -125,7 +130,7 @@ footer {
                 <asp:ContentPlaceHolder ID="MainContent" runat="server" />
             </main>
             <footer>
-                <p>&copy; 2024 Points and Prizes</p>
+                <p>&copy; 2024 إدارة النقاط والجوائز</p>
             </footer>
         </div>
     </form>
