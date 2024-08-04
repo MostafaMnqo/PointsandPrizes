@@ -4,7 +4,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
      <div class="form-container">
         <h2>إضافة جائزة</h2>
-        
             <div class="form-group">
                 <label for="txtPrizeName">اسم الجائزة:</label>
                 <asp:TextBox ID="txtPrizeName" runat="server" CssClass="form-control"></asp:TextBox>
@@ -25,6 +24,5 @@
                 <asp:Button ID="btnAddPrize" runat="server" Text="إضافة جائزة" CssClass="btn" OnClick="btnAddPrize_Click" />
             </div>
             <asp:Label ID="lblMessage" runat="server" CssClass="message"></asp:Label>
-        
     </div>
 </asp:Content>
