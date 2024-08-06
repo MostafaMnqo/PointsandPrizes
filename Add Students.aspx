@@ -25,19 +25,31 @@
             </div>
             
             <div class="form-container">
-            <h2>Students List</h2>
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CssClass="table">
-                    <Columns>
-                        <asp:BoundField DataField="StuId" HeaderText="Student ID" />
-                        <asp:BoundField DataField="ClassId" HeaderText="Class ID" />
-                        <asp:BoundField DataField="StuName" HeaderText="Name" />
-                        <asp:ImageField DataImageUrlField="StuImage" HeaderText="Image">
-                            <ControlStyle Width="100px" Height="100px" />
-                        </asp:ImageField>
-                        <asp:BoundField DataField="StuPoints" HeaderText="Points" />
-                    </Columns>
-                </asp:GridView>
-            </div>
+        <h2>قائمة الطلاب</h2>
+        <asp:Repeater ID="StudentsRepeater" runat="server">
+            <HeaderTemplate>
+                <table width="100%" border="1">
+                    <tr>
+                        <th>معرف الطالب</th>
+                        <th>الاسم</th>
+                        <th>الصورة</th>
+                        <th>النقاط</th>
+                        <th>معرف الصف</th>
+                    </tr>
+            </HeaderTemplate>
+            <ItemTemplate>
+                <tr>
+                    <td><%# Eval("StuId") %></td>
+                    <td><%# Eval("StuName") %></td>
+                    <td><img src='<%# Eval("StuImage") %>' alt="صورة الطالب" style="width:100px;height:100px;" /></td>
+                    <td><%# Eval("StuPoints") %></td>
+                    <td><%# Eval("ClassId") %></td>
+                </tr>
+            </ItemTemplate>
+            <FooterTemplate></table></FooterTemplate>
+        </asp:Repeater>
+        <asp:Label ID="Label1" runat="server" CssClass="message"></asp:Label>
+    </div>
             
         
     </div>

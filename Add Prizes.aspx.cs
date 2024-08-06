@@ -74,7 +74,6 @@ namespace Points_and_Prizes
         }
         private void LoadPrizes()
         {
-            // Database connection string
             string connStr = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Asus\\Documents\\PointsandPrizes.mdf;Integrated Security=True;Connect Timeout=30";
 
             using (SqlConnection conn = new SqlConnection(connStr))

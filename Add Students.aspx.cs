@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace Points_and_Prizes
             if (!IsPostBack)
             {
                 PopulateClasses();
-
+                BindStudentData();
             }
         }
         private void PopulateClasses()
@@ -39,19 +40,31 @@ namespace Points_and_Prizes
 
             ddlClasses.Items.Insert(0, new ListItem("-- اختر الفصل --", "0"));
         }
-        private void BindGrid()
+        private void BindStudentData()
         {
-            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Asus\\Documents\\PointsandPrizes.mdf;Integrated Security=True;Connect Timeout=30";
+            string connStr = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Asus\\Documents\\PointsandPrizes.mdf;Integrated Security=True;Connect Timeout=30";
+            string query = "SELECT StuId, StuName, StuImage, StuPoints, ClassId FROM Students";
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(connStr))
             {
-                string sql = "SELECT StuId, ClassId, StuName, StuImage, StuPoints FROM Students";
-                SqlCommand comm = new SqlCommand(sql, conn);
-
-                conn.Open();
-                SqlDataReader reader = comm.ExecuteReader();
-                GridView1.DataSource = reader;
-                GridView1.DataBind();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    try
+                    {
+                        conn.Open();
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        StudentsRepeater.DataSource = dt;
+                        StudentsRepeater.DataBind();
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle exception
+                        lblMessage.Text = "Database error: " + ex.Message;
+                        lblMessage.ForeColor = System.Drawing.Color.Red;
+                    }
+                }
             }
         }
         protected void btnSubmit_Click(object sender, EventArgs e)

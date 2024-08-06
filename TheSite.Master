@@ -148,7 +148,7 @@ footer {
                 <h1>إدارة النقاط والجوائز</h1>
             </header>
             <nav>
-                <a href="Add Students.aspx">إدارى الطلاب</a>
+                <a href="Add Students.aspx">إدارة الطلاب</a>
                 <a href="Add Classes.aspx">إدارة الفصول</a>
                 <a href="Add Prizes.aspx">إدارة الجوائز</a>
             </nav>
