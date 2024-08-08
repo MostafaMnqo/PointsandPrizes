@@ -34,16 +34,16 @@
                         <th>الاسم</th>
                         <th>الصورة</th>
                         <th>النقاط</th>
-                        <th>معرف الصف</th>
+                        <th>الصف</th>
                     </tr>
             </HeaderTemplate>
             <ItemTemplate>
                 <tr>
                     <td><%# Eval("StuId") %></td>
                     <td><%# Eval("StuName") %></td>
-                    <td><img src='<%# Eval("StuImage") %>' alt="صورة الطالب" style="width:100px;height:100px;" /></td>
+                    <td><img src='<%# Eval("StuImage") %>' ALT="صورة الطالب" style="width:100px;height:100px;" /></td>
                     <td><%# Eval("StuPoints") %></td>
-                    <td><%# Eval("ClassId") %></td>
+                    <td><%# Eval("ClassName") %></td>
                 </tr>
             </ItemTemplate>
             <FooterTemplate></table></FooterTemplate>

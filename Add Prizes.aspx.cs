@@ -35,7 +35,7 @@ namespace Points_and_Prizes
                     fileUpload.PostedFile.SaveAs(Server.MapPath(imagePath));
                 }
 
-                // Database connection string
+                // Database connection
                 string connStr = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Asus\\Documents\\PointsandPrizes.mdf;Integrated Security=True;Connect Timeout=30";
 
                 using (SqlConnection conn = new SqlConnection(connStr))

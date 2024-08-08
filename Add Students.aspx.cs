@@ -33,7 +33,7 @@ namespace Points_and_Prizes
                     SqlDataReader reader = cmd.ExecuteReader();
                     ddlClasses.DataSource = reader;
                     ddlClasses.DataTextField = "ClassName";
-                    ddlClasses.DataValueField = "ClassId";
+                    ddlClasses.DataValueField = "ClassName";
                     ddlClasses.DataBind();
                 }
             }
@@ -43,7 +43,9 @@ namespace Points_and_Prizes
         private void BindStudentData()
         {
             string connStr = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Asus\\Documents\\PointsandPrizes.mdf;Integrated Security=True;Connect Timeout=30";
-            string query = "SELECT StuId, StuName, StuImage, StuPoints, ClassId FROM Students";
+            string query = @"SELECT Students.StuId, Students.StuName, Students.StuImage, Students.StuPoints, Classes.ClassName 
+                       FROM Students 
+                       INNER JOIN Classes ON Students.ClassName = Classes.ClassName";
 
             using (SqlConnection conn = new SqlConnection(connStr))
             {
@@ -71,34 +73,30 @@ namespace Points_and_Prizes
         {
             string studentName = txtName.Text;
             string selectedClass = ddlClasses.SelectedValue;
-            int points = 0;
+            string points = txtPoints.Text;
+            string className = ddlClasses.SelectedValue;
+            string stuImagePath = null;
 
-            if (!string.IsNullOrEmpty(txtPoints.Text))
-            {
-                points = int.Parse(txtPoints.Text);
-            }
-
-            byte[] imageBytes = null;
-
+            // Handle file upload
             if (fileUpload.HasFile)
             {
-                using (BinaryReader br = new BinaryReader(fileUpload.PostedFile.InputStream))
-                {
-                    imageBytes = br.ReadBytes(fileUpload.PostedFile.ContentLength);
-                }
+                string fileName = Path.GetFileName(fileUpload.PostedFile.FileName);
+                stuImagePath = "~/Uploads/" + fileName;
+                fileUpload.PostedFile.SaveAs(Server.MapPath(stuImagePath));
             }
 
+            // Database connection
             string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Asus\\Documents\\PointsandPrizes.mdf;Integrated Security=True;Connect Timeout=30";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string sql = "INSERT INTO Students (ClassId, StuName, StuImage, StuPoints) VALUES (@ClassId ,@Name, @Picture, @Points)";
+                string sql = "INSERT INTO Students (ClassName, StuName, StuImage, StuPoints) VALUES (@ClassName ,@Name, @Picture, @Points)";
 
                 using (SqlCommand comm = new SqlCommand(sql, conn))
                 {
-                    comm.Parameters.AddWithValue("@ClassId", selectedClass);
+                    comm.Parameters.AddWithValue("@ClassName", selectedClass);
                     comm.Parameters.AddWithValue("@Name", studentName);
-                    comm.Parameters.AddWithValue("@Picture", (object)imageBytes ?? DBNull.Value);
+                    comm.Parameters.AddWithValue("@Picture", (object)stuImagePath ?? DBNull.Value);
                     comm.Parameters.AddWithValue("@Points", points);
                     
 
@@ -112,6 +110,8 @@ namespace Points_and_Prizes
             ddlClasses.SelectedIndex = 0;
             lblMessage.Text = "تم إضافة الطالب بنجاح";
             lblMessage.ForeColor = System.Drawing.Color.Green;
+
+            BindStudentData();
         }
     }
 }
