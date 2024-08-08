@@ -27,12 +27,13 @@
     </div>
     <div class="form-container">
         <h2>قائمة الجوائز</h2>
-        <asp:GridView ID="GridViewPrizes" runat="server" AutoGenerateColumns="False">
+        <asp:GridView ID="GridViewPrizes" runat="server" AutoGenerateColumns="False" OnRowCommand="GridViewPrizes_RowCommand" DataKeyNames="PId">
             <Columns>
                 <asp:BoundField DataField="Pname" HeaderText="اسم الجائزة" />
                 <asp:ImageField DataImageUrlField="Pimage" HeaderText="صورة الجائزة" ControlStyle-Width="100px" ControlStyle-Height="100px" />
                 <asp:BoundField DataField="Pquantity" HeaderText="الكمية" />
                 <asp:BoundField DataField="Pprice" HeaderText="السعر" />
+                <asp:ButtonField ButtonType="Button" CommandName="DeletePrize" Text="حذف" />
             </Columns>
         </asp:GridView>
     </div>

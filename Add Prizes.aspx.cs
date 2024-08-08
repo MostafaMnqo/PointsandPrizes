@@ -78,13 +78,40 @@ namespace Points_and_Prizes
 
             using (SqlConnection conn = new SqlConnection(connStr))
             {
-                string sql = "SELECT Pname, Pimage, Pquantity, Pprice FROM Prizes";
+                string sql = "SELECT PID, Pname, Pimage, Pquantity, Pprice FROM Prizes";
                 using (SqlDataAdapter da = new SqlDataAdapter(sql, conn))
                 {
                     DataTable dt = new DataTable();
                     da.Fill(dt);
                     GridViewPrizes.DataSource = dt;
                     GridViewPrizes.DataBind();
+                }
+            }
+        }
+        protected void GridViewPrizes_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "DeletePrize")
+            {
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                int prizeId = Convert.ToInt32(GridViewPrizes.DataKeys[rowIndex].Value);
+
+                DeletePrize(prizeId);
+                LoadPrizes();
+            }
+        }
+        private void DeletePrize(int prizeId)
+        {
+            string connStr = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Asus\\Documents\\PointsandPrizes.mdf;Integrated Security=True;Connect Timeout=30";
+            string query = "DELETE FROM Prizes WHERE PId = @PId";
+
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@PId", prizeId);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
                 }
             }
         }
